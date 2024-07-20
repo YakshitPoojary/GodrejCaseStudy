@@ -3,15 +3,16 @@ import { Box, Typography, Button } from '@mui/material';
 import Dropzone from 'react-dropzone';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './fileupload.css';
-import NightModeToggle from './nightmodetoggle';
+
 const FileUpload = () => {
   const [files, setFiles] = useState([]);
   const [uploadProgress, setUploadProgress] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleDrop = (acceptedFiles) => {
-    setFiles([...files, ...acceptedFiles]);
-    acceptedFiles.forEach(file => simulateUpload(file));
+    const newFiles = acceptedFiles.filter(file => !files.some(existingFile => existingFile.name === file.name));
+    setFiles([...files, ...newFiles]);
+    newFiles.forEach(file => simulateUpload(file));
   };
 
   const simulateUpload = (file) => {
@@ -49,22 +50,25 @@ const FileUpload = () => {
     backgroundColor: '#ffffff',
     height: '60vh',
     cursor: 'pointer',
-    width:'45vw',
+    width: '40vw',
   };
 
   const dropzoneActiveStyle = {
     border: '2px dashed #3f51b5',
   };
 
-  return (<>
-    <Box sx={{ width: '100vw', height: '100vh', display: 'flex', maxWidth:'100vw' }}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', flex: '1' }}>
-        <Typography variant="h4" gutterBottom sx={{mt:'5%',ml:'2%'}}>
+  return (
+    <Box sx={{ width: '100%', height: '100vh', display: 'flex' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', width:'50%' }}>
+        <Typography variant="h4" gutterBottom sx={{ mt: '5%', ml: '2%' }}>
           Upload File
         </Typography>
-        <Box sx={{ height: '65%', width: '95%', padding: '3%', bgcolor: '#ffffff', borderRadius: '5%', boxShadow: '1', m: '2%', mt:0,display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',}}>
+        <Box sx={{
+          height: '65%', width: '95%', padding: '3%', bgcolor: '#ffffff', borderRadius: '5%', boxShadow: '1', m: '2%', mt: 0, display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden'
+        }}>
           <Dropzone onDrop={handleDrop}>
             {({ getRootProps, getInputProps, isDragActive }) => (
               <section>
@@ -85,9 +89,9 @@ const FileUpload = () => {
           </Dropzone>
         </Box>
       </Box>
-      <Box mt={2} sx={{ flex: '1', mt:'5%'}}>
+      <Box mt={2} sx={{mt: '5%', width:'50%'}}>
         {files.map((file) => (
-          <Box key={file.name} sx={{ display: 'flex', alignItems: 'center', mb: 1, width: '100%'}}>
+          <Box key={file.name} sx={{ display: 'flex', alignItems: 'center', mb: 1, width: '100%' }}>
             <Typography variant="h6" sx={{ width: '30%', maxWidth: '30%', overflow: 'hidden' }}>
               {file.name}
             </Typography>
@@ -97,23 +101,21 @@ const FileUpload = () => {
                   key={index}
                   className={(uploadProgress[file.name] / 10) > index ? 'circle pop' : 'circle'}
                   sx={{
-                    width: '11vh',
-                    height: '11vh',
+                    width: '20rem',
                     borderRadius: '50%',
                     backgroundColor: (uploadProgress[file.name] / 10) > index ? 'primary.main' : 'secondary.main',
-                    mx: 0.05,
+                    mx: 0.5,
                   }}
                 />
               ))}
             </Box>
             <Button variant="text" onClick={() => handleDeleteFile(file.name)}>
-              <DeleteIcon sx={{ color: "red", fontSize: "5vh", m: '2rem' }} />
+              <DeleteIcon sx={{ color: "red", fontSize: "2rem", m: '2rem' }} />
             </Button>
           </Box>
         ))}
       </Box>
     </Box>
-    </>
   );
 };
 

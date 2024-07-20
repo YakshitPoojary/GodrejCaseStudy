@@ -4,8 +4,9 @@ import Fileupload from './components/fileupload';
 import withSplashScreen from './components/_withsplshscreen'; 
 import Navbar from './components/navbar';
 import NightModeToggle from './components/nightmodetoggle';
-import { ThemeProvider, CssBaseline } from '@mui/material';
+import { ThemeProvider, CssBaseline, Box} from '@mui/material';
 import { ThemeContextProvider, useThemeContext } from './theme/ThemeContext';
+import Homepage from './components/homepage';
 
 const AppContent = () => {
   const { theme } = useThemeContext();
@@ -14,8 +15,11 @@ const AppContent = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className="App">
+        <Box sx={{width:'100%',height:'100vh'}}>
         <Navbar/>
-        <Fileupload />
+        {/* <Fileupload /> */}
+        <Homepage/>
+        </Box>
       </div>
     </ThemeProvider>
   );
