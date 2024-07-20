@@ -45,10 +45,11 @@ const FileUpload = () => {
     alignItems: 'center',
     justifyContent: 'center',
     border: '2px dashed #ade4ff',
-    borderRadius: '4px',
+    borderRadius: '5%',
     backgroundColor: '#ffffff',
     height: '60vh',
     cursor: 'pointer',
+    width:'45vw',
   };
 
   const dropzoneActiveStyle = {
@@ -56,12 +57,14 @@ const FileUpload = () => {
   };
 
   return (<>
-    <Box sx={{ width: '100vw', height: '100vh', display: 'flex' }}>
+    <Box sx={{ width: '100vw', height: '100vh', display: 'flex', maxWidth:'100vw' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column', flex: '1' }}>
         <Typography variant="h4" gutterBottom sx={{mt:'5%',ml:'2%'}}>
           Upload File
         </Typography>
-        <Box sx={{ height: '65%', width: '95%', padding: '3%', bgcolor: '#ffffff', borderRadius: '1.5%', boxShadow: '1', m: '2%', mt:0}}>
+        <Box sx={{ height: '65%', width: '95%', padding: '3%', bgcolor: '#ffffff', borderRadius: '5%', boxShadow: '1', m: '2%', mt:0,display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',}}>
           <Dropzone onDrop={handleDrop}>
             {({ getRootProps, getInputProps, isDragActive }) => (
               <section>
@@ -82,10 +85,10 @@ const FileUpload = () => {
           </Dropzone>
         </Box>
       </Box>
-      <Box mt={2} sx={{ flex: '1', width: '50%' ,mt:'5%'}}>
+      <Box mt={2} sx={{ flex: '1', mt:'5%'}}>
         {files.map((file) => (
           <Box key={file.name} sx={{ display: 'flex', alignItems: 'center', mb: 1, width: '100%'}}>
-            <Typography variant="h6" sx={{ width: '20%', maxWidth: '20%', overflow: 'hidden' }}>
+            <Typography variant="h6" sx={{ width: '30%', maxWidth: '30%', overflow: 'hidden' }}>
               {file.name}
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', width: '60%', ml: '2%' }}>
@@ -95,11 +98,9 @@ const FileUpload = () => {
                   className={(uploadProgress[file.name] / 10) > index ? 'circle pop' : 'circle'}
                   sx={{
                     width: '11vh',
-                    minWidth: '100px',
-                    maxHeight: '100px',
-                    height: '100px',
+                    height: '11vh',
                     borderRadius: '50%',
-                    backgroundColor: (uploadProgress[file.name] / 10) > index ? 'primary.main' : '#A9A9A9',
+                    backgroundColor: (uploadProgress[file.name] / 10) > index ? 'primary.main' : 'secondary.main',
                     mx: 0.05,
                   }}
                 />

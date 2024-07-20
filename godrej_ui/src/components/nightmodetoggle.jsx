@@ -19,8 +19,8 @@ const NightModeToggle = () => {
         border: '1px solid',
         borderRadius: 25,
         p: 2,
-        width: '8%',
-        height: '8%',
+        width: '10%',
+        height: '5vh',
       }}
     >
       <IconButton sx={{ color: mode === 'dark' ? 'inherit' : '#A9A9A9' }} onClick={toggleColorMode}>

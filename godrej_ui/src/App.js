@@ -14,7 +14,7 @@ const AppContent = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className="App">
-        <NightModeToggle/>
+        <Navbar/>
         <Fileupload />
       </div>
     </ThemeProvider>

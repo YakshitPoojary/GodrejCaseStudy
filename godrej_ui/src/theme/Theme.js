@@ -17,6 +17,9 @@ export const getDesignTokens = (mode) => ({
             primary: grey[900],
             secondary: grey[900],
           },
+          secondary: {
+            main: '#282723'
+          }
         }
       : {
           primary: {
@@ -30,6 +33,9 @@ export const getDesignTokens = (mode) => ({
             primary: '#fff',
             secondary: grey[500],
           },
+          secondary: {
+            main: '#A9A9A9'
+          }
         }),
   },
 });
