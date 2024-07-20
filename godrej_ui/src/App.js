@@ -1,5 +1,7 @@
 import './App.css';
 import Homepage from './components/homepage';
+import withSplashScreen from './components/_withsplshscreen'; 
+
 function App() {
   return (
     <div className="App">
@@ -7,5 +9,5 @@ function App() {
     </div>
   );
 }
+export default withSplashScreen(App);
 
-export default App;
