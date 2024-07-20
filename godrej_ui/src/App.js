@@ -1,15 +1,30 @@
+import React from 'react';
 import './App.css';
-import Homepage from './components/homepage';
+import Fileupload from './components/fileupload';
 import withSplashScreen from './components/_withsplshscreen'; 
 import Navbar from './components/navbar';
+import NightModeToggle from './components/nightmodetoggle';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { ThemeContextProvider, useThemeContext } from './theme/ThemeContext';
 
-function App() {
+const AppContent = () => {
+  const { theme } = useThemeContext();
+
   return (
-    <div className="App">
-      <Navbar/>
-      
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className="App">
+        <NightModeToggle/>
+        <Fileupload />
+      </div>
+    </ThemeProvider>
   );
-}
-export default withSplashScreen(App);
+};
 
+const App = () => (
+  <ThemeContextProvider>
+    <AppContent />
+  </ThemeContextProvider>
+);
+
+export default withSplashScreen(App);
